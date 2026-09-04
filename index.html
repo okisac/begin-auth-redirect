@@ -1,23 +1,33 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Yönlendiriliyor...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
     <script>
         window.onload = function() {
-            // Supabase'in URL'ye eklediği tüm parametreleri ve token'ları al
             const currentUrl = window.location.href;
+            const urlObj = new URL(currentUrl);
+            const searchParams = urlObj.search;
+            const hashParams = urlObj.hash;
             
-            // Bu URL'yi kendi mobil uygulama deep link şemamıza çeviriyoruz
-            // Örneğin: https://kullanici.github.io/proje/#access_token=... -> begin://auth-callback#access_token=...
-            const deepLinkUrl = currentUrl.replace("https://kullaniciadi.github.io/repo-adi", "begin://auth-callback");
+            const deepLinkUrl = `begin://auth-callback${searchParams}${hashParams}`;
             
-            // Kullanıcıyı mobil uygulamaya yönlendir
             window.location.replace(deepLinkUrl);
+            
+            setTimeout(() => {
+                document.getElementById('fallback').style.display = 'block';
+            }, 2000);
         };
     </script>
 </head>
-<body>
-    <p>Uygulamaya yönlendiriliyorsunuz, lütfen bekleyin...</p>
+<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <h3>Redirecting to app...</h3>
+    <p>Please wait, you will be redirected to the app shortly.</p>
+    
+    <div id="fallback" style="display:none; margin-top: 20px;">
+        <p>If the app didn't open automatically:</p>
+        <a href="begin://auth-callback" style="padding: 10px 20px; background: #000; color: #fff; text-decoration: none; border-radius: 5px;">Open App</a>
+    </div>
 </body>
 </html>
