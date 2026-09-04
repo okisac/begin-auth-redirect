@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönlendiriliyor...</title>
+    <script>
+        window.onload = function() {
+            // Supabase'in URL'ye eklediği tüm parametreleri ve token'ları al
+            const currentUrl = window.location.href;
+            
+            // Bu URL'yi kendi mobil uygulama deep link şemamıza çeviriyoruz
+            // Örneğin: https://kullanici.github.io/proje/#access_token=... -> begin://auth-callback#access_token=...
+            const deepLinkUrl = currentUrl.replace("https://kullaniciadi.github.io/repo-adi", "begin://auth-callback");
+            
+            // Kullanıcıyı mobil uygulamaya yönlendir
+            window.location.replace(deepLinkUrl);
+        };
+    </script>
+</head>
+<body>
+    <p>Uygulamaya yönlendiriliyorsunuz, lütfen bekleyin...</p>
+</body>
+</html>
