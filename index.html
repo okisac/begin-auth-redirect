@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +9,18 @@
             const currentUrl = window.location.href;
             const urlObj = new URL(currentUrl);
             
-            
             const search = urlObj.search; 
             const hash = urlObj.hash;     
-            
             
             const deepLinkUrl = `begin://auth-callback${search}${hash}`;
             
             
-           const fallbackLink = document.getElementById('openAppBtn');
+            const fallbackLink = document.getElementById('openAppBtn');
             if (fallbackLink) {
                 fallbackLink.href = deepLinkUrl;
             }
 
-            
+           
             window.location.href = deepLinkUrl;
             
             
@@ -31,7 +29,7 @@
                 if (fallbackDiv) {
                     fallbackDiv.style.display = 'block';
                 }
-            }, 1000);
+            }, 2000);
         };
     </script>
 </head>
