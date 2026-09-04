@@ -8,16 +8,25 @@
         window.onload = function() {
             const currentUrl = window.location.href;
             const urlObj = new URL(currentUrl);
-            const searchParams = urlObj.search;
-            const hashParams = urlObj.hash;
             
-            const deepLinkUrl = `begin://auth-callback${searchParams}${hashParams}`;
             
-            window.location.replace(deepLinkUrl);
+            const search = urlObj.search; 
+            const hash = urlObj.hash;     
+            
+            
+            const deepLinkUrl = `begin://auth-callback${search}${hash}`;
+            
+            
+            const fallbackLink = document.getElementById('openAppBtn');
+            fallbackLink.href = deepLinkUrl;
+
+            
+            window.location.href = deepLinkUrl;
+            
             
             setTimeout(() => {
                 document.getElementById('fallback').style.display = 'block';
-            }, 2000);
+            }, 500);
         };
     </script>
 </head>
